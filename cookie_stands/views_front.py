@@ -19,12 +19,22 @@ class CookieUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "cookies/cookie_update.html"
     model = Cookie
     fields = "__all__"
+    success_url = reverse_lazy("cookie_list")
 
 
 class CookieCreateView(LoginRequiredMixin, CreateView):
     template_name = "cookies/cookie_create.html"
     model = Cookie
-    fields = ["name", "rating", "reviewer"] # "__all__" for all of them
+    fields = [
+        "location",
+        "owner",
+        "description",
+        "hourly_sales",
+        "minimum_customers_per_hour",
+        "maximum_customers_per_hour",
+        "average_cookies_per_sale"
+    ]  # ["__all__"] for all of them
+    success_url = reverse_lazy("cookie_list")
 
 
 class CookieDeleteView(LoginRequiredMixin, DeleteView):
